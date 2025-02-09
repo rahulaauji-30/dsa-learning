@@ -2,6 +2,7 @@
 
 ---
 
+![alt text](image.png)
 ### **1. Introduction to DSA**
 
    - **Topics**:
@@ -31,7 +32,9 @@
      - [LeetCode: Array Questions](https://leetcode.com/tag/array/)
      - [YouTube: Arrays and its Operations](https://www.youtube.com/watch?v=R6YFrE70jSo)
      - [Sorting Algorithms - Visualized](https://www.youtube.com/watch?v=yyH7cGhnHpc)
-
+     - [Array Guide](https://www.geeksforgeeks.org/array-data-structure-guide/)
+     - [Practice Problems](https://www.geeksforgeeks.org/explore?page=1&category=Arrays&sortBy=submissions)
+     - [Top 50 Coding Interviews Question](https://www.geeksforgeeks.org/top-50-array-coding-problems-for-interviews/)
 ---
 
 ### **3. Strings**
