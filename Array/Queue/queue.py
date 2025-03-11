@@ -22,12 +22,12 @@ REAR = -1
 def is_empty() -> bool:
     """
     STEP 1: START
-    STEP 2: IF FRONT and REAR is -1 THEN GO TO STEP 3 ELSE Go to step 4
+    STEP 2: IF REAR is -1 THEN GO TO STEP 3 ELSE Go to step 4
     STEP 3: return TRUE
     STEP 4: return FALSE
     STEP 5: END
     """
-    if FRONT and REAR is -1:
+    if REAR == -1:
         return True
     return False
 
@@ -40,17 +40,21 @@ def is_full() -> bool:
     STEP 4: return FALSE
     STEP 5: END
     """
-    pass
+    if REAR < MAX:
+        return False
+    return True
 
 
-def front() -> int:
+def front():
     """
     STEP 1: START
     STEP 2: IF not is_empty() THEN Go to STEP 3
     STEP 3: return the element at FRONT
     STEP 4: END
     """
-    pass
+    if is_empty():
+        return print("Queue is empty.")
+    return print(QUEUE[FRONT])
 
 
 def enqueue():
@@ -62,10 +66,19 @@ def enqueue():
     STEP 5: Store the element at REAR Location.
     STEP 6: return overflow message.
     """
-    pass
+    global REAR
+    if is_full():
+        return print("The Queue is full.")
+
+    value = int(input("Enter the value: "))
+    if REAR < MAX:
+        REAR += 1
+        QUEUE.append(value)
+        print("Added to Queue.")
 
 
 def dequeue():
+    global FRONT, REAR
     """
     STEP 1: START
     STEP 2: IF is_empty THEN go to 3 ELSE go to 4
@@ -76,4 +89,39 @@ def dequeue():
     STEP 7: SET FRONT AND REAR = -1
     STEP 8: END
     """
-    pass
+    if is_empty():
+        return print("Queue is empty!")
+    else:
+        FRONT += 1
+        print(f"\nRemoved {QUEUE[FRONT]}")
+    if FRONT > REAR:
+        FRONT = -1
+        REAR = -1
+
+
+def display():
+    for item in QUEUE:
+        print(item)
+
+
+def main():
+    choice = int(input("\n1.Enqueue\n2.Dequeue\n3.Is Full\n4.Is Empty\n5.Peek\n6.Display\nEnter your choice: "))
+    if choice == 1:
+        enqueue()
+    elif choice == 2:
+        dequeue()
+    elif choice == 3:
+        is_full()
+    elif choice == 4:
+        is_empty()
+    elif choice == 5:
+        front()
+    elif choice == 6:
+        display()
+    else:
+        print("Choose from above options only!")
+
+
+if __name__ == "__main__":
+    while True:
+        main()
