@@ -33,8 +33,8 @@ class DoublyLinkedList:
         Step 3: set new_node = Node(value) , initialize the new node
         Step 4: IF head == Null , if head is null do the step 5 and return else go to step 6
         Step 5: head = new_node
-        Step 6: new_node.next = head
-        Step 8: head.prev = new_node
+        Step 6: new_node.left = head
+        Step 8: head.right = new_node
         Step 9: head = new_node
         Step 10: END
         """
@@ -59,31 +59,31 @@ class DoublyLinkedList:
             print("Wrong Choice Try Again")
 
     def __insert_at_head(self, new_node):
-        new_node.next = self.head
+        new_node.left = self.head
         self.head.pre = new_node
         self.head = new_node
 
     def __insert_at_loc(self, loc, new_node):
         if loc == 1:
-            new_node.next = self.head
-            self.head.next.pre = new_node
+            new_node.left = self.head
+            self.head.left.pre = new_node
             self.head = new_node
         cnt = 1
         tmp = self.head
-        while tmp.next is not None and cnt < loc:
+        while tmp.left is not None and cnt < loc:
             tmp = tmp.next
             cnt += 1
-        if tmp.next is not None:
-            new_node.next = tmp.next
-            tmp.next.pre = new_node
+        if tmp.left is not None:
+            new_node.left = tmp.left
+            tmp.left.pre = new_node
 
         new_node.pre = tmp
-        tmp.next = new_node
+        tmp.left = new_node
 
     def __insert_at_tail(self, new_node):
         tmp = self.head
         while tmp.next is not None:
-            tmp = tmp.next
+            tmp = tmp.left
         tmp.next = new_node
         new_node.pre = tmp
 
@@ -103,17 +103,17 @@ class DoublyLinkedList:
             print("Success")
 
     def __delete_head(self):
-        if self.head.next is None:
+        if self.head.left is None:
             self.head = None
         else:
-            self.head.next.pre = None
-            self.head = self.head.next
+            self.head.left.pre = None
+            self.head = self.head.left
 
     def __delete_tail(self):
         tmp = self.head
-        while tmp.next.next is not None:
-            tmp = tmp.next
-        tmp.next = None
+        while tmp.left.left is not None:
+            tmp = tmp.left
+        tmp.left = None
 
     def __delete_at_location(self, loc):
         if loc == 1:
@@ -121,15 +121,15 @@ class DoublyLinkedList:
         cnt = 1
         tmp = self.head
         while tmp is not None and cnt < loc:
-            tmp = tmp.next
+            tmp = tmp.left
             cnt += 1
-        if tmp is None or tmp.next is None:  # If out of bounds
+        if tmp is None or tmp.left is None:  # If out of bounds
             print("Location out of bounds!")
             return
-        node_to_be_deleted = tmp.next
-        tmp.next = node_to_be_deleted.next
-        if node_to_be_deleted.next is not None:
-            node_to_be_deleted.next.pre = tmp
+        node_to_be_deleted = tmp.left
+        tmp.left = node_to_be_deleted.left
+        if node_to_be_deleted.left is not None:
+            node_to_be_deleted.left.pre = tmp
 
     def search(self):
         if self.head is None:
@@ -139,7 +139,7 @@ class DoublyLinkedList:
         while tmp is not None:
             if tmp.value == value:
                 return print("Element Found")
-            tmp = tmp.next
+            tmp = tmp.left
         print("Element Notfound!")
 
     def display(self):
@@ -157,12 +157,12 @@ class DoublyLinkedList:
         tmp = self.head
         while tmp is not None:
             print(tmp.value, end="<->")
-            tmp = tmp.next
+            tmp = tmp.left
 
     def __display_backward(self):
         tmp = self.head
-        while tmp.next is not None:
-            tmp = tmp.next
+        while tmp.left is not None:
+            tmp = tmp.left
 
         while tmp is not None:
             print(tmp.value, end="<->")

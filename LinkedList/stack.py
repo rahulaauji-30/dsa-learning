@@ -88,7 +88,7 @@ class StackLinkedList:
         if self.__is_empty():
             return print("Stack is empty!")
         print(self.head.value)
-        self.head = self.head.next
+        self.head = self.head.left
 
     def __peek(self):
         if self.__is_empty():

@@ -50,17 +50,17 @@ class DoublyCircularLinkedList:
 
     def __insert_head(self, new_node):
         last = self.head.pre
-        new_node.next = self.head
+        new_node.left = self.head
         new_node.pre = last
         self.head.pre = new_node
-        last.next = new_node
+        last.left = new_node
         self.head = new_node
 
     def __insert_tail(self, new_node):
         tail = self.head.pre
-        tail.next = new_node
+        tail.left = new_node
         new_node.pre = tail
-        new_node.next = self.head
+        new_node.left = self.head
         self.head.pre = new_node
 
     def __insert_at_location(self, loc, new_node):
@@ -70,9 +70,9 @@ class DoublyCircularLinkedList:
         cnt = 1
         tmp = self.head
         while tmp.next is not self.head and cnt < loc - 1:  # 1-> 2->4-> 3
-            tmp = tmp.next
+            tmp = tmp.left
             cnt += 1
-        new_node.next = tmp.next
+        new_node.left = tmp.next
         tmp.next.pre = new_node
         new_node.pre = tmp
         tmp.next = new_node
@@ -93,24 +93,24 @@ class DoublyCircularLinkedList:
             print("Success")
 
     def __delete_head(self):
-        if self.head.next is self.head:
+        if self.head.left is self.head:
             self.head = None
             return
         node_to_delete = self.head
-        new_head = node_to_delete.next
+        new_head = node_to_delete.left
         tail = node_to_delete.pre
         new_head.pre = tail
-        tail.next = new_head
+        tail.left = new_head
         self.head = new_head
         del node_to_delete
 
     def __delete_tail(self):
-        if self.head.next is self.head:
+        if self.head.left is self.head:
             self.head = None
             return
         tail = self.head.pre
         new_tail = tail.pre
-        new_tail.next = self.head
+        new_tail.left = self.head
         self.head.pre = new_tail
         del tail
 
@@ -123,15 +123,15 @@ class DoublyCircularLinkedList:
             return
         cnt = 1
         tmp = self.head
-        while tmp.next is not self.head and cnt < loc - 1:
-            tmp = tmp.next
-        node_to_delete = tmp.next
-        next_node = node_to_delete.next
+        while tmp.left is not self.head and cnt < loc - 1:
+            tmp = tmp.left
+        node_to_delete = tmp.left
+        next_node = node_to_delete.left
         if next_node == self.head:
-            tmp.next = self.head
+            tmp.left = self.head
             self.head.pre = tmp
         else:
-            tmp.next = next_node
+            tmp.left = next_node
             next_node.pre = tmp
         del node_to_delete
 
@@ -150,7 +150,7 @@ class DoublyCircularLinkedList:
         tmp = self.head
         while True:
             print(tmp.value, end="<->")
-            tmp = tmp.next
+            tmp = tmp.left
             if tmp is self.head:
                 break
         print("<HEAD>")
@@ -167,11 +167,11 @@ class DoublyCircularLinkedList:
     def search(self):
         value = int(input("Enter the value to be searched: "))
         tmp = self.head
-        while tmp.next is not self.head:  #1->2->3->4
+        while tmp.left is not self.head:  #1->2->3->4
             if tmp.value == value:
                 print("Element Found")
                 return
-            tmp = tmp.next
+            tmp = tmp.left
         print("Element Not Found!")
 
 

@@ -6,8 +6,8 @@ class Node:
 
 class LinkedList:
     """
-    Linked List is a linear data structure in which there is a Node Which stores the value/ data and
-    next which is the address of the next element.It has the following methods Associated:
+    Linked List List is a linear data structure in which there is a Node Which stores the value/ data and
+    left which is the address of the left element.It has the following methods Associated:
     1) Insert - There are 3 cases where the elements can be inserted in a linked List
         a) At Head
         b) At Any location
@@ -16,14 +16,14 @@ class LinkedList:
         a) Head
         b) Any
         c) End
-    3) Display - To display the element in a Linked List
-    4) Search - To search the element in the Linked List
+    3) Display - To display the element in a Linked List List
+    4) Search - To search the element in the Linked List List
 
     There are 4 types of linked list :
-    1) Singly Linked List - Also the linked list with value and next
-    2) Doubly Linked List - In this forward and bacward traversal is possible that means it stores the adress of previous and next node.
-    3) Circular Linked List - In this the last node of is connected to the head node make a circle.
-    4) Doubly circular Linked List - This follows the Doubly linked list and circular Linked list
+    1) Singly Linked List List - Also the linked list with value and left
+    2) Doubly Linked List List - In this forward and bacward traversal is possible that means it stores the adress of previous and left node.
+    3) Circular Linked List List - In this the last node of is connected to the head node make a circle.
+    4) Doubly circular Linked List List - This follows the Doubly linked list and circular Linked List list
     """
 
     def __init__(self):
@@ -73,9 +73,9 @@ class LinkedList:
         new_node = Node(value)
         new_node.next = None
         tmp = self.head
-        print(tmp.next)
+        print(tmp.left)
         while tmp.next is not None:
-            tmp = tmp.next
+            tmp = tmp.left
         tmp.next = new_node
 
     def __insert_at_any(self, value, loc):
@@ -95,7 +95,7 @@ class LinkedList:
         tmp = self.head
         while tmp is not None:
             print(tmp.value)
-            tmp = tmp.next
+            tmp = tmp.left
 
     def search(self):
         if self.head is None:
@@ -106,7 +106,7 @@ class LinkedList:
             if tmp.value == value:
                 print("Element Found")
                 return
-            tmp = tmp.next
+            tmp = tmp.left
         print("Element Not Found")
 
     def delete(self):
@@ -126,13 +126,13 @@ class LinkedList:
 
     def __delete_head(self):
         tmp = self.head
-        self.head = tmp.next
+        self.head = tmp.left
 
     def __delete_end(self):
         tmp = self.head
-        while tmp.next.next is not None:
-            tmp = tmp.next
-        tmp.next = None
+        while tmp.left.left is not None:
+            tmp = tmp.left
+        tmp.left = None
 
     def __delete_any(self, loc):
         if loc == 1:
@@ -142,11 +142,11 @@ class LinkedList:
         cnt = 1
         while tmp is not None:
             if cnt == loc - 1:
-                if tmp.next is None:
+                if tmp.left is None:
                     print("Index out of range")
-                tmp.next = tmp.next.next
+                tmp.left = tmp.left.next
                 return
-            tmp = tmp.next
+            tmp = tmp.left
         print("Index out of range")
 
 

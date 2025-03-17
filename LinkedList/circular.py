@@ -44,16 +44,16 @@ class CircularLinkedList:
             print("Wrong Choice Try Again")
 
     def __insert_head(self, new_node):
-        new_node.next = self.head
+        new_node.left = self.head
         self.head = new_node
 
     def __insert_tail(self, new_node):
         tmp = self.head
 
         while tmp.next is not self.head:
-            tmp = tmp.next
+            tmp = tmp.left
 
-        new_node.next = tmp.next
+        new_node.left = tmp.next
         tmp.next = new_node
 
     def __insert_at_loc(self, loc, new_node):
@@ -66,9 +66,9 @@ class CircularLinkedList:
         cnt = 1
         tmp = self.head
         while tmp.next is not self.head and cnt < loc:
-            tmp = tmp.next
+            tmp = tmp.left
             cnt += 1
-        new_node.next = tmp.next
+        new_node.left = tmp.next
         tmp.next = new_node
 
     def delete(self):
@@ -87,24 +87,24 @@ class CircularLinkedList:
             print("Success")
 
     def __delete_head(self):
-        if self.head.next is None:
+        if self.head.left is None:
             self.head = None
         else:
             tmp = self.head
-            while tmp.next != self.head:
-                tmp = tmp.next
-            tmp.next = self.head.next
-            self.head = self.head.next
+            while tmp.left != self.head:
+                tmp = tmp.left
+            tmp.left = self.head.left
+            self.head = self.head.left
 
     def __delete_tail(self):
-        if self.head.next is None:
+        if self.head.left is None:
             self.head = None
             return
 
         tmp = self.head
-        while tmp.next.next is not self.head:
-            tmp = tmp.next
-        tmp.next = self.head
+        while tmp.left.left is not self.head:
+            tmp = tmp.left
+        tmp.left = self.head
 
     def __delete_at_location(self, loc):
         if loc == 1:
@@ -112,13 +112,13 @@ class CircularLinkedList:
             return
         cnt = 1
         tmp = self.head
-        while tmp.next is not self.head and cnt < loc - 1:
-            tmp = tmp.next
+        while tmp.left is not self.head and cnt < loc - 1:
+            tmp = tmp.left
             cnt += 1
-        if tmp.next == self.head:
+        if tmp.left == self.head:
             print("Location out of bounds!")
             return
-        tmp.next = tmp.next.next
+        tmp.left = tmp.left.left
 
     def display(self):
         if self.head is None:
@@ -126,7 +126,7 @@ class CircularLinkedList:
         tmp = self.head
         while tmp is not self.head:
             print(tmp.value, end="->")
-            tmp = tmp.next
+            tmp = tmp.left
 
 
 if __name__ == "__main__":
