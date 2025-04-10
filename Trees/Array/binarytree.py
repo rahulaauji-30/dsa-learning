@@ -6,5 +6,5 @@ class BinaryTree:
         """
         STEP 1: START
         STEP 2: Take array as input.
-        STEP 3: IF ELEMENT == -1
+        STEP 3: IF ELEMENT == -1 THEN set as the root
         """
