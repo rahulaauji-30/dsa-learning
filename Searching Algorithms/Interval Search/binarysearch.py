@@ -29,7 +29,19 @@ def binary_search(arr,low,high,key):
     if low > high:
         print("Search Unsuccessful.")
 
+def updated_binary_search(nums, start, end, target):
+    if start <= end:
+        mid = start + (end - start) // 2
+        if nums[mid] == target:
+            return mid
+        elif nums[mid] < target:
+            return updated_binary_search(nums, mid + 1, end, target)
+        else:
+            return updated_binary_search(nums, start, mid - 1, target)
+    return -1  # Target not found
+
+
 if __name__ == "__main__":
     a = [6, 12, 14, 18, 22, 39, 55, 182]
-    binary_search(a, 0, len(a)-1, 22)
-    binary_search(a, 0, len(a)-1, 54)
+    print(updated_binary_search(a, 0, len(a)-1, 22))
+    print(updated_binary_search(a, 0, len(a)-1, 54))
