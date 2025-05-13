@@ -6,11 +6,11 @@ It follows First In First Out principle.It has following three types.
 3) Double Ended Queue (Dequeue)
 It contains REAR and FRONT. The elements are inserted from the REAR and deleted from the FRONT.
 It has the following operations associated:
-1) Enqueue - Insert element in the queue.
-2) Dequeue - Delete element form the queue.
+1) Enqueue - Insert element in the q.
+2) Dequeue - Delete element form the q.
 3) Front - Returns the front element without removing.
-4) isEmpty - Checks if the queue is empty or not.
-5) isFull - Checks if the queue is Full or not.
+4) isEmpty - Checks if the q is empty or not.
+5) isFull - Checks if the q is Full or not.
 """
 
 QUEUE = []
