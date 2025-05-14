@@ -65,3 +65,60 @@ class BinarySearchTree:
                 root.val = temp.val
                 root.right = self.delete(root.right, temp.val)
         return root
+
+    def search(self,root,data):
+        if root is None:
+            return False
+
+        if root.val == data:
+            print("Element Found")
+            return True
+        elif root.val > data:
+            return self.search(root.left,data)
+        else:
+            return self.search(root.right,data)
+
+if __name__ == "__main__":
+    bst = BinarySearchTree()
+    root = None
+
+    while True:
+        print("\n--- Binary Search Tree Menu ---")
+        print("1. Insert")
+        print("2. Delete")
+        print("3. Search")
+        print("4. Inorder Traversal")
+        print("5. Preorder Traversal")
+        print("6. Postorder Traversal")
+        print("7. Exit")
+
+        choice = input("Enter your choice (1-7): ")
+
+        if choice == '1':
+            val = int(input("Enter value to insert: "))
+            root = bst.insert(root, val)
+        elif choice == '2':
+            val = int(input("Enter value to delete: "))
+            root = bst.delete(root, val)
+        elif choice == '3':
+            val = int(input("Enter value to search: "))
+            found = bst.search(root, val)
+            if not found:
+                print("Element Not Found")
+        elif choice == '4':
+            print("Inorder Traversal:", end=" ")
+            bst.inorder(root)
+            print()
+        elif choice == '5':
+            print("Preorder Traversal:", end=" ")
+            bst.preorder(root)
+            print()
+        elif choice == '6':
+            print("Postorder Traversal:", end=" ")
+            bst.postorder(root)
+            print()
+        elif choice == '7':
+            print("Exiting...")
+            break
+        else:
+            print("Invalid choice. Please enter a number from 1 to 7.")
