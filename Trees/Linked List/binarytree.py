@@ -1,4 +1,5 @@
 import queue
+from inspect import stack
 
 from LinkedList.array import Queue
 
@@ -65,12 +66,41 @@ class BinaryTree:
             if current.right:
                 self.q.put(current.right)
 
+    def build_tree_loops(self,pre_order):
+        root = Node(pre_order[0])
 
+        for i in range(1,len(pre_order)):
+            if pre_order[i] != -1:
+                new_node = Node(pre_order[i])
+                while root:
+                    if root.val > new_node.val:
+                        parent = root.left
+                    else:
+                        parent = root.right
 
+    def build_tree_stack(self,pre_order):
+        if not pre_order:
+            return None
+        root = Node(pre_order[0])
+        stack = [root]
 
+        for i in range(1,len(pre_order)):
+            if pre_order[i] == -1:
+                continue
+            new_node = Node(pre_order[i])
+            if stack[-1].val > new_node.val:
+                stack[-1].left = new_node
+                stack.append(new_node)
+            else:
+                parent = None
+                while stack and new_node.val > stack[-1].val:
+                    parent = stack.pop()
+                parent.right = new_node
+                stack.append(new_node)
+        return root
 if __name__ == "__main__":
     bt = BinaryTree()
-    root = bt.build_tree([1, 2,-1,-1,3,4,-1,-1,5,-1,-1])
+    root = bt.build_tree_stack([1, 2,-1,-1,3,4,-1,-1,5,-1,-1])
     bt.pre_order(root)
     print()
     bt.in_order(root)
